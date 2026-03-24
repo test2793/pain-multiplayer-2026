@@ -25,15 +25,15 @@ let drawingHistory = [];
 io.on('connection', (socket) => {
     console.log('Connected!');
 
-    socket.emit('history', drawingHistory);
+socket.emit('history', drawingHistory);
 
-    socket.on('draw_step', (data) => {
+socket.on('draw_step', (data) => {
         drawingHistory.push(data);
 
-        socket.broadcast.emit('draw_step', data);
+socket.broadcast.emit('draw_step', data);
     });
 
-    socket.on('clear', () => {
+socket.on('clear', () => {
         drawingHistory = [];
         io.emit('clear');
     });
