@@ -6,3 +6,5 @@ server part making on nodejs i do tutorial later is easy
 
 
 !!! DONT DRAW WITH FRIEND SIMULTANEOUSLY !!! XDD
+
+идеи для обнов: цвета с закрашывалкой цвета и фикс палок а также настройки с добовлением палок лол
