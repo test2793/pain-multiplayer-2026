@@ -9,7 +9,7 @@ Multiplayer paint application for Android. Developed entirely on mobile using Ja
 The server handles real-time drawing synchronization using **Node.js** and **Socket.io**.
 
 ### Requirements
-* **Node.js** & **npm** (Available in Termux via `pkg install nodejs`)
+* **Node.js** & **npm** (`pkg install nodejs`)
 
 ### Installation
 1. Install the necessary dependencies:
