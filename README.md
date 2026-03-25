@@ -33,18 +33,31 @@ The server handles real-time drawing synchronization using **Node.js** and **Soc
    let drawingHistory = [];
 
    io.on('connection', (socket) => {
-    console.log('User Connected!');
+    console.log('User Connected: ' + socket.id);
 
     socket.emit('history', drawingHistory);
 
     socket.on('draw_step', (data) => {
-        drawingHistory.push(data);
+        if (data.type === 'end') {
+            drawingHistory.push(data);
+        }
         socket.broadcast.emit('draw_step', data);
+    });
+
+    socket.on('draw_control', (data) => {
+        if (data.type === 'undo') {
+            drawingHistory.pop(); 
+        }
+        socket.broadcast.emit('draw_control', data);
     });
 
     socket.on('clear', () => {
         drawingHistory = [];
         io.emit('clear');
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User Disconnected');
     });
    });
 
@@ -52,6 +65,7 @@ The server handles real-time drawing synchronization using **Node.js** and **Soc
    server.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
    });
+
 
 4. Run the Server
    ```bash
