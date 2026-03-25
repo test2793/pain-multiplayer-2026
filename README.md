@@ -1,46 +1,17 @@
-# pain-multiplayer-2026
+# 🎨 pain-multiplayer-2026
 
-it paint for android multiplayer making on java and c++ on android!! i dont have pc xD 
+Multiplayer paint application for Android. Developed entirely on mobile using Java and C++! 📱
 
-server part making on nodejs i do tutorial later is easy
+> **Note:** This project is being built without a PC. Proof that you only need a phone and a dream (and maybe Termux).
 
+## 🚀 Server Part Setup
 
-# server part tutorial
+The server handles real-time drawing synchronization using **Node.js** and **Socket.io**.
 
-server requirements: nodejs, npm.
+### Requirements
+* **Node.js** & **npm** (Available in Termux via `pkg install nodejs`)
 
-after downloading npm you must do " npm install express socket.io "
-next add server.js script like " nano server.js " this script: 
-
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
-
-let drawingHistory = [];
-
-io.on('connection', (socket) => {
-    console.log('Connected!');
-
-socket.emit('history', drawingHistory);
-
-socket.on('draw_step', (data) => {
-        drawingHistory.push(data);
-
-socket.broadcast.emit('draw_step', data);
-    });
-
-socket.on('clear', () => {
-        drawingHistory = [];
-        io.emit('clear');
-    });
-});
-
-server.listen(3000, '0.0.0.0', () => {
-    console.log('Сервер запущен!');
-});
-
-and do " node server.js "
+### Installation
+1. Install the necessary dependencies:
+   ```bash
+   npm install express socket.io
